@@ -1,0 +1,24 @@
+name: Cypress Test
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Use the appropriate Node.js version
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Cypress Tests
+        run: npm run cypress:run  # Ensure this command is defined in package.json
